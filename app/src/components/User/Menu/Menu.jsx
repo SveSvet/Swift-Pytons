@@ -29,7 +29,7 @@ const Menu = () => {
         {value: 'Настройки', id: 8, img: setting, to: '/setting'}
     ];
 
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(true);
 
 
     const [state, setState] = useState(initialState);
@@ -55,7 +55,6 @@ const Menu = () => {
     };
 
     return (
-        <Router>
             <div className={classnames({[styles.menu__container]: true,
                 [styles.menuClose]: sidebarOpen})}>
 
@@ -68,7 +67,6 @@ const Menu = () => {
                                              [styles.arrowClose]: sidebarOpen})}/>
                 </button>
             </div>
-        </Router>
     )
 
 };

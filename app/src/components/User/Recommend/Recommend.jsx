@@ -1,9 +1,12 @@
 import React from "react";
 import styles from './Recommend.module.css';
+import Menu from "../Menu";
 
 const Recommend = () => {
     return (
-        <h1>Recommend</h1>
+        <div>
+            <Menu />
+        </div>
     )
 };
 

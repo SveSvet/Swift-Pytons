@@ -1,9 +1,12 @@
 import React from "react";
 import styles from './MyVoice.module.css';
+import Menu from "../Menu";
 
 const MyVoice = () => {
     return (
-        <h1>MyVoice</h1>
+        <div>
+            <Menu />
+        </div>
     )
 };
 

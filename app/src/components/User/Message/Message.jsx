@@ -1,9 +1,12 @@
 import React from "react";
 import styles from './Message.module.css';
+import Menu from "../Menu";
 
 const Message = () => {
     return (
-        <h1>Message</h1>
+        <div>
+            <Menu />
+        </div>
     )
 };
 

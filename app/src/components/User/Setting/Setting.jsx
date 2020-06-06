@@ -1,9 +1,12 @@
 import React from "react";
 import styles from './Setting.module.css';
+import Menu from "../Menu";
 
 const Setting = () => {
     return (
-        <h1>Setting</h1>
+        <div>
+            <Menu />
+        </div>
     )
 };
 

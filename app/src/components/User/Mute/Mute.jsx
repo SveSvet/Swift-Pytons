@@ -1,9 +1,12 @@
 import React from "react";
 import styles from './Mute.module.css';
+import Menu from "../Menu";
 
 const Mute = () => {
     return (
-        <h1>Mute</h1>
+        <div>
+            <Menu />
+        </div>
     )
 };
 

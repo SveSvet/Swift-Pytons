@@ -1,9 +1,12 @@
 import React from "react";
 import styles from './Initiative.module.css';
+import Menu from "../Menu";
 
 const Initiative = () => {
     return (
-        <h1>Initiative</h1>
+        <div>
+            <Menu />
+        </div>
     )
 };
 
