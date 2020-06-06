@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 
 
 const Initiatives = (props) => {
-  const items = props.initiatives.map(({ id, img, title, num_of_supporters}) => {
+  const items = props.state.initiatives.map(({ id, img, title, num_of_supporters}) => {
     return (
       <div key={id} className={styles.initiative}>
         <img src="https://via.placeholder.com/140x100.png"/>

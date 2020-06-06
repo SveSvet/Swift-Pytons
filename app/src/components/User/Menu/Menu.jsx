@@ -16,9 +16,9 @@ import Search from "../Search";
 
 import styles from './Menu.module.css';
 
-const Menu = () => {
+const Menu = (props) => {
     const initialState = [
-        {value: 'Мой профиль', id: 1, img: mypage, to: '/mypage'},
+        {value: 'Мой профиль', id: 1, img: mypage, to: '/users/1'},
         {value: 'Сообщения', id: 2, img: message, to: '/message'},
         {value: 'Инициатива', id: 3, img: inic, to: '/initiatives'},
         {value: 'Мои голоса', id: 4, img: voices, to: '/myvoice'},

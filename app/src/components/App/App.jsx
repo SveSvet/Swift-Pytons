@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import StartPage from "../StartPage";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Users from "../User/Users";
 import Registration from "../Registration";
 import Message from "../User/Message";
@@ -19,6 +19,7 @@ export default class App extends Component {
 
         this.state = {
             toggle: true,
+            userid: 1,
             users: [],
             initiatives: []
         };
@@ -34,7 +35,7 @@ export default class App extends Component {
             (error) => {
                 this.setState({error});
             })
-        fetch('http://leadersofdigital.pythonanywhere.com/api/v1/initiatives/')
+        fetch('https://leadersofdigital.pythonanywhere.com/api/v1/initiatives/')
           .then(response => response.json())
           .then(
             (response) => {
@@ -49,18 +50,20 @@ export default class App extends Component {
         return (
             <Router>
                 <div>
+                <Switch>
                     <Route exact path="/" component={StartPage} />
                     <Route path="/registration" component={Registration} />
-                    <Route path='/users/1' render={(props) => <MyPage {...props} users={this.state.users}/>}/>
-                    <Route path='/users' render={(props) => <Users {...props} users={this.state.users}/>}/>
+                    <Route path='/users/:id' render={(props) => <MyPage {...props} state={this.state}/>}/>
+                    <Route exact path='/users' render={(props) => <Users {...props} state={this.state}/>}/>
                     <Route path='/message' component={Message} />
-                    <Route exact path='/initiatives' render={(props) => <Initiatives {...props} initiatives={this.state.initiatives}/>}/>
-                    <Route path='/initiatives/:id' render={(props) => <Initiative {...props} initiatives={this.state.initiatives}/>} />
+                    <Route exact path='/initiatives' render={(props) => <Initiatives {...props} state={this.state}/>}/>
+                    <Route path='/initiatives/:id' render={(props) => <Initiative {...props} state={this.state}/>} />
                     <Route path='/myvoice' component={MyVoice} />
                     <Route path='/recommend' component={Recommend} />
                     <Route path='/city' component={City} />
                     <Route path='/mute' component={Mute} />
                     <Route path='/setting' component={Setting} />
+                </Switch>
                 </div>
             </Router>
         );

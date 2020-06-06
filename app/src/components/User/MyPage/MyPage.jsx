@@ -6,8 +6,8 @@ import { NavLink } from 'react-router-dom';
 
 
 const MyPage = (props) => {
-    const index = props.users.findIndex(items => items.id == props.match.params.id);
-    const user = props.users[index];
+    const index = props.state.users.findIndex(items => items.id == props.match.params.id);
+    const user = props.state.users[index];
     return (
       <div className={styles.wrapper}>
         <Header child={'Моя страница'}/>

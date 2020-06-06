@@ -23,7 +23,7 @@ const coordinates = [
   [57.684758, 39.738521]
 ];
 
-const YMap = () => {
+const YMap = ({ initiatives }) => {
     return (
       <YMaps>
         <Map defaultState={mapData} width='100%' height='380px'>
