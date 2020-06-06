@@ -1,0 +1,18 @@
+.wrapper {
+    margin-left: 65px;
+}
+
+.initiatives__wrapper {
+    position: absolute;
+    top: 475px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+.initiative {
+    padding: 15px;
+    width: 140px;
+}
+

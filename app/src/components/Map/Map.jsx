@@ -1,10 +1,21 @@
 import React, {Component} from "react";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 import styles from './Map.module.css';
+import { NavLink } from 'react-router-dom';
 
 const mapData = {
-  center: [55.751574, 37.573856],
-  zoom: 5,
+  center: [51.9587, 85.9601],
+  zoom: 10,
+};
+
+const placeMark = {
+  geometry: [51.9587, 85.9601],
+  properties: {
+    hintContent: 'Это хинт',
+    balloonContent: ['Лавочка (12.05.2020)<br>Поставьте уже, наконец, лавочку.<br><a href="/initiatives/1">Просмотреть инициативу</a>']
+
+  },
+  modules: ['geoObject.addon.balloon', 'geoObject.addon.hint']
 };
 
 const coordinates = [
@@ -12,15 +23,14 @@ const coordinates = [
   [57.684758, 39.738521]
 ];
 
-export default class YMap extends Component {
-
-  render() {
+const YMap = () => {
     return (
       <YMaps>
         <Map defaultState={mapData} width='100%' height='380px'>
-          {coordinates.map(coordinate => <Placemark geometry={coordinate}/>)}
+          <Placemark {...placeMark}/>
         </Map>
       </YMaps>
     )
-  }
 };
+
+export default YMap;

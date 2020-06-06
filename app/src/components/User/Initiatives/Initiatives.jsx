@@ -1,8 +1,9 @@
-import React, {Component} from "react";
-import styles from './Initiative.module.css';
+import React from "react";
+import styles from './Initiatives.module.css';
 import Header from "../../Header";
+import YMap from "../../Map";
 import Menu from "../Menu";
-import { NavLink } from 'react-router-dom';
+import {NavLink} from "react-router-dom";
 
 const data = [{
   title: "Поставьте наконец лавочку",
@@ -26,26 +27,26 @@ const data = [{
   modified: "2020-06-06T15:58:32.436497+03:00",
   id: 1
 },{
-  title: "Нет прохода к озеру",
-  text: "Не могу пройти с детьми к озеру",
-  annotation: "Озеро",
-  author: {
-    id: 2,
-    name: "Михаил Александрович Берсенев"
+    title: "Нет прохода к озеру",
+    text: "Не могу пройти с детьми к озеру",
+    annotation: "Озеро",
+    author: {
+      id: 2,
+      name: "Михаил Александрович Берсенев"
+    },
+    longitude: 37.527314,
+    latitude: 55.806539,
+    photo: null,
+    tags: [
+      "проход",
+      "грязно",
+      "петиция"
+    ],
+    num_of_supporters: 3,
+    created: "2020-06-06T03:55:31.409170+03:00",
+    modified: "2020-06-06T15:58:32.468314+03:00",
+    id: 2
   },
-  longitude: 37.527314,
-  latitude: 55.806539,
-  photo: null,
-  tags: [
-    "проход",
-    "грязно",
-    "петиция"
-  ],
-  num_of_supporters: 3,
-  created: "2020-06-06T03:55:31.409170+03:00",
-  modified: "2020-06-06T15:58:32.468314+03:00",
-  id: 2
-},
   {
     title: "Чапаевский парк закрыт",
     text: "Когда наконец откроете Чапаевский парк?",
@@ -90,27 +91,27 @@ const data = [{
     id: 4
   }]
 
-class Initiative extends Component {
-  render() {
-    console.log(this.props.match.params.id)
-    const index = data.findIndex(items => items.id == this.props.match.params.id)
-    const tagstring = data[index].tags.map(x => "#"+x+" ")
+const items = data.map(({ id, img, title, num_of_supporters}) => {
+  return (
+    <div className={styles.initiative}>
+      <img src="https://via.placeholder.com/140x100.png"/>
+      <NavLink to={"initiatives/"+id}>{title}</NavLink>
+      <div>Голосов: {num_of_supporters}</div>
+    </div>
+  )
+})
+
+const Initiatives = () => {
     return (
-      <div className={styles.wrapper}>
-        <Header child={'Инициатива'}/>
-        <Menu/>
-        <div className={styles.initiative__wrapper}>
-        <NavLink to="/initiatives">Назад</NavLink>
-        <div>Количество голосов: {data[index].num_of_supporters}</div>
-        <h1>{data[index].title}</h1>
-        <div className={styles.tags}>{tagstring}</div>
-        <div>{data[index].created.split('T')[0]}</div>
-        <img src="https://via.placeholder.com/335x200.png"/>
-          <div>{data[index].text}</div>
+        <div className={styles.wrapper}>
+            <Header child={'Инициативы'}/>
+            <Menu/>
+            <YMap/>
+            <div className={styles.initiatives__wrapper}>
+                {items}
+            </div>
         </div>
-      </div>
     )
-  }
 };
 
-export default Initiative;
+export default Initiatives;

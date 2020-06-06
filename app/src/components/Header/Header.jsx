@@ -4,7 +4,8 @@ import styles from './Header.module.css';
 const Header = ({ child }) => {
     return (
     <div className={styles.header}>
-        <span className={styles.title}>{child}</span>
+        <span className={styles.title}>Сила голоса</span>
+        <span className={styles.pagetitle}>{child}</span>
     </div>
     )
 };
