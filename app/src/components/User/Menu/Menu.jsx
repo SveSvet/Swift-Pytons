@@ -5,7 +5,7 @@ import mypage from './assets/mypage.svg';
 import message from './assets/message.svg';
 import inic from './assets/inic.svg';
 import voices from './assets/voices.svg';
-import recommend from './assets/inic.svg';
+import recommend from './assets/recommend.svg';
 import city from './assets/city.svg';
 import mute from './assets/mute.svg';
 import setting from './assets/setting.svg';
