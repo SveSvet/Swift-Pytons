@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import StartPage from "../StartPage";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import UserPage from "../User/UserPage";
+import Users from "../User/Users";
 import Registration from "../Registration";
 import Message from "../User/Message";
 import Initiative from "../User/Initiative";
@@ -11,6 +11,7 @@ import Recommend from "../User/Recommend";
 import City from "../User/City";
 import Mute from "../User/Mute";
 import Setting from "../User/Setting";
+import MyPage from "../User/MyPage";
 
 export default class App extends Component {
     constructor(props) {
@@ -50,7 +51,8 @@ export default class App extends Component {
                 <div>
                     <Route exact path="/" component={StartPage} />
                     <Route path="/registration" component={Registration} />
-                    <Route path='/mypage' exact component={UserPage} />
+                    <Route path='/users/1' render={(props) => <MyPage {...props} users={this.state.users}/>}/>
+                    <Route path='/users' render={(props) => <Users {...props} users={this.state.users}/>}/>
                     <Route path='/message' component={Message} />
                     <Route exact path='/initiatives' render={(props) => <Initiatives {...props} initiatives={this.state.initiatives}/>}/>
                     <Route path='/initiatives/:id' render={(props) => <Initiative {...props} initiatives={this.state.initiatives}/>} />

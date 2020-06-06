@@ -5,7 +5,7 @@ import Menu from "../Menu";
 import { NavLink } from 'react-router-dom';
 
 
-const Initiative = (props) => {
+const Initiative = ({props}) => {
     const index = props.initiatives.findIndex(items => items.id == props.match.params.id)
     const initiative = props.initiatives[index];
     const tagstring = initiative.tags.map(x => "#"+x+" ")

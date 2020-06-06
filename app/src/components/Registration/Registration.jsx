@@ -10,7 +10,7 @@ const Registration = () => {
                 <input type="email" className={styles.input} placeholder="Введите e-mail"/>
                 <input type="password" className={styles.input} placeholder="Введите почту"/>
 
-                <NavLink to="/mypage"
+                <NavLink to="/users/1"
                          className={styles.button}>
                     Зарегистрироваться</NavLink>
             </form>
