@@ -12,6 +12,7 @@
     left: 0;
     top: 0;
     transition: .5s;
+    overflow: hidden;
 }
 
 .menuClose {
@@ -35,10 +36,6 @@
     font-size: 24px;
     font-weight: 500;
     white-space: nowrap;
-}
-
-.itemClose {
-    font-size: 0px;
 }
 
 .menu__item:hover {

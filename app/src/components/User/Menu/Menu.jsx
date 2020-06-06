@@ -20,7 +20,7 @@ const Menu = () => {
     const initialState = [
         {value: 'Мой профиль', id: 1, img: mypage, to: '/mypage'},
         {value: 'Сообщения', id: 2, img: message, to: '/message'},
-        {value: 'Инициатива', id: 3, img: inic, to: '/initiative'},
+        {value: 'Инициатива', id: 3, img: inic, to: '/initiatives'},
         {value: 'Мои голоса', id: 4, img: voices, to: '/myvoice'},
         {value: 'Рекомендации', id: 5, img: recommend, to: '/recommend'},
         {value: 'Выбор города', id: 6, img: city, to: '/city'},
@@ -38,8 +38,7 @@ const Menu = () => {
                key={id}
                to={to}
                exact
-               className={classnames({[styles.menu__item]: true,
-                   [styles.itemClose]: sidebarOpen})}
+               className={styles.menu__item}
                activeClassName={styles['menu__item-active']}
            >
                <img src={img} alt="" className={styles['menu-icon']}/>
