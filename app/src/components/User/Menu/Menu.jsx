@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
-import Sidebar from "react-sidebar";
 import classnames from 'classnames';
 
 import mypage from './assets/mypage.svg';
@@ -33,7 +32,7 @@ const Menu = () => {
 
 
     const [state, setState] = useState(initialState);
-    const items = state.map(({ value, id, img, to}) => {
+    const items = state.map(({ value, id, img, to, key}) => {
        return (
            <NavLink
                key={id}
@@ -41,7 +40,7 @@ const Menu = () => {
                exact
                className={classnames({[styles.menu__item]: true,
                    [styles.itemClose]: sidebarOpen})}
-               activeclassName={styles['menu__item-active']}
+               activeClassName={styles['menu__item-active']}
            >
                <img src={img} alt="" className={styles['menu-icon']}/>
                {value}
@@ -51,7 +50,6 @@ const Menu = () => {
 
     const moveSidebar = () => {
         setSidebarOpen(!sidebarOpen);
-        console.log('hello')
     };
 
     return (
