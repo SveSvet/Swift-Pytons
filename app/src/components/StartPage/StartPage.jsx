@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 
 import styles from './StartPage.module.css';
 import Header from "../Header";
@@ -14,12 +15,9 @@ export default class StartPage extends Component {
             <YMap/>
             <h2>Голосуй за инициативы рядом с тобой</h2>
             <div className={styles.btn_wrap}>
-                <a
-                    href="http://localhost:3000/registration"
-                    className={styles.button}> Зарегистрироваться </a>
-                <a
-                    href="http://localhost:3000/"
-                    className={styles.button}> Назад</a>
+                <NavLink
+                    to='/registration'
+                    className={styles.button}> Зарегистрироваться </NavLink>
             </div>
         </div>
         );
