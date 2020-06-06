@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search-icon {
+    padding-right: 15px;
+    transition: .2s;
+ }
+
+.input {
+    background: none;
+    border: 2px solid #fff;
+    padding: 8px 10px;
+    color: #fff;
+    outline: none;
+    transition: .2s;
+}
+
+.input:active {
+    color: #000;
+    background: white;
+}
+
+.input:hover,
+.search-icon:hover {
+    opacity: .6;
+}
