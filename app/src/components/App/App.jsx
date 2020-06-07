@@ -62,7 +62,7 @@ export default class App extends Component {
           let newdata = this.state.initiatives;
           if (type === 0) {
             newdata[index].num_of_supporters--;
-            let index = newdata[index].supporters.indexOf(this.state.userid);
+            //let index = newdata[index].supporters.indexOf(this.state.userid);
             if (index > -1) { newdata[index].supporters.splice(index, 1); }
           }
           else {

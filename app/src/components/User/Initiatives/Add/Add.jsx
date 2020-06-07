@@ -21,8 +21,8 @@ const AddInitiative = (props) => {
             <YMap select={select} selector="true"/>
             <div className={styles.initiatives__wrapper}>
               <div>Координаты: {state.point}</div>
-              <div><label>Название: <input/></label></div>
-              <div><label>Описание: <input/></label></div>
+              <div className={styles.wrap__desc}><label className={styles.desc}>Название: <input/></label></div>
+              <div className={styles.wrap__desc}><label className={styles.desc}>Описание: <input/></label></div>
               <div className={styles.vote}>Предложить</div>
             </div>
 
