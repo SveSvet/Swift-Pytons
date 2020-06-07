@@ -1,34 +1,114 @@
 .wrapper {
     margin-left: 65px;
 }
-
-.initiative__wrapper {
-    margin: 0 16px;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    margin: 16px;
 }
 
-.initiative__wrapper img {
-    width: 98%;
-    max-width: 640px;
-}
-
-h1 {
-    margin-bottom: 10px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 34px;
-
+.title {
+    width: 80px;
+    font-size: 24px;
+    line-height: 29px;
     color: #000000;
 }
 
-.tags {
+.pagetitle {
     font-family: Montserrat;
     font-style: normal;
+    text-align: end;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    text-decoration: underline;
+    font-size: 26px;
+    line-height: 37px;
 
-    color: rgba(0, 0, 0, 0.49);
+    color: #FF766B;
 }
+
+.desc-of-user {
+    color: #A0A0A0;
+    font-size: 14px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.tick {
+    padding-right: 5px;
+}
+
+.user__avatar {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.status {
+    font-size: 20px;
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.user__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.user__content-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    padding: 10px;
+
+    color: #FF766B;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.user__content>div {
+    /* скрыть контент по умолчанию */
+    display: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.user__tags1:checked~.user__content-tags1,
+.user__tags2:checked~.user__content-tags2,
+.user__tags3:checked~.user__content-tags3,
+.user__tags4:checked~.user__content-tags4{
+    display: block;
+}
+
+.user__tags-label {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    vertical-align: middle;
+    user-select: none;
+
+    padding: 5px 10px;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+}
+
+.user__tags-label:hover {
+    opacity: .8;
+}
+
+.user__tags-label::before {
+    content: url("./assets/dropdown.svg");
+    padding-right: 10px;
+    width: 100%;
+    height: 100%;
+}
+
