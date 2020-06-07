@@ -23,7 +23,7 @@ const Menu = (props) => {
         {value: 'Инициатива', id: 3, img: inic, to: '/initiatives'},
         {value: 'Мои голоса', id: 4, img: voices, to: '/myvoice'},
         {value: 'Рекомендации', id: 5, img: recommend, to: '/recommend'},
-        {value: 'Выбор города', id: 6, img: city, to: '/city'},
+        {value: 'Поиск активистов', id: 6, img: city, to: '/users'},
         {value: 'Уведомления', id: 7, img: mute, to: '/mute'},
         {value: 'Настройки', id: 8, img: setting, to: '/setting'}
     ];

@@ -21,6 +21,7 @@ export default class App extends Component {
         this.state = {
             toggle: true,
             userid: 1,
+            userstatus: null,
             users: [],
             initiatives: []
         };
@@ -46,6 +47,8 @@ export default class App extends Component {
             (error) => {
                 this.setState({error});
             })
+        let index = this.state.users.findIndex(items => items.id == this.state.userid);
+        if (index > -1) this.setState({userstatus: this.state.users[index].status});
     }
     async vote(id, type) {
         await fetch('http://leadersofdigital.pythonanywhere.com/api/v1/initiative_likes/', {
@@ -58,20 +61,45 @@ export default class App extends Component {
           return response.json();
         }).then((data) => {
           console.log(data);
-          let index = this.state.initiatives.findIndex(items => items.id == id);
+          let index = this.state.initiatives.findIndex(items => items.id === id);
           let newdata = this.state.initiatives;
           if (type === 0) {
-            newdata[index].num_of_supporters--;
-            //let index = newdata[index].supporters.indexOf(this.state.userid);
-            if (index > -1) { newdata[index].supporters.splice(index, 1); }
+            let userIndex = newdata[index].supporters.indexOf(this.state.userid);
+            if (index > -1) newdata[index].num_of_supporters--;
+            if (userIndex > -1) { newdata[index].supporters.splice(userIndex, 1); }
           }
           else {
-            newdata[index].num_of_supporters++;
-            newdata[index].supporters.push(this.state.userid)
+            if (index > -1) newdata[index].num_of_supporters++;
+            if (index > -1) newdata[index].supporters.push(this.state.userid)
           }
           this.setState({initiatives: newdata});
         });
     }
+  async addInitiative(id, type) {
+    await fetch('http://leadersofdigital.pythonanywhere.com/api/v1/initiative/', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({"initiative": parseInt(id), "user": this.state.userid, "type": type})
+    }).then(function (response) {
+      return response.json();
+    }).then((data) => {
+      console.log(data);
+      let index = this.state.initiatives.findIndex(items => items.id == id);
+      let newdata = this.state.initiatives;
+      if (type === 0) {
+        newdata[index].num_of_supporters--;
+        //let index = newdata[index].supporters.indexOf(this.state.userid);
+        if (index > -1) { newdata[index].supporters.splice(index, 1); }
+      }
+      else {
+        newdata[index].num_of_supporters++;
+        newdata[index].supporters.push(this.state.userid)
+      }
+      this.setState({initiatives: newdata});
+    });
+  }
     render() {
         return (
             <Router>
@@ -84,7 +112,7 @@ export default class App extends Component {
                     <Route path='/message' component={Message} />
                     <Route exact path='/initiatives' render={(props) => <Initiatives {...props} state={this.state}/>}/>
                     <Route path='/initiatives/:id' render={(props) => <Initiative {...props} state={this.state} vote={(id, type) => this.vote(id, type)}/>} />
-                    <Route path='/initiative/add' render={(props) => <AddInitiative {...props} state={this.state}/>} />
+                    <Route path='/initiative/add' render={(props) => <AddInitiative {...props} state={this.state} add={(id, type) => this.addInitiative(id, type)}/>} />
                     <Route path='/myvoice' component={MyVoice} />
                     <Route path='/recommend' component={Recommend} />
                     <Route path='/city' component={City} />

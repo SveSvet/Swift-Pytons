@@ -13,8 +13,9 @@ if (props.state.initiatives.length > 0) {
   let index = props.state.initiatives.findIndex(items => items.id == props.match.params.id)
   let initiative = props.state.initiatives[index];
   let tagstring = initiative.tags.map(x => "#" + x + " ")
-
-  const VoteButton = () => {
+  let userIndex = props.state.users.findIndex(items => items.id == props.state.userid);
+  let user = props.state.users[userIndex];
+  function VoteButton() {
     let supporters = initiative.supporters.map(x => x.id);
     if (!supporters.includes(props.state.userid)) {
       return <div onClick={() => props.vote(props.match.params.id, 1)} className={styles.vote}>Проголосовать</div>
@@ -22,8 +23,12 @@ if (props.state.initiatives.length > 0) {
       return <div onClick={() => props.vote(props.match.params.id, 0)} className={styles.voted}>Отозвать голос</div>
     }
   }
-
-
+  function ApproveButton() {
+    if (user.status == 'governor') {
+      return <div className={styles.vote}>Одобрить</div>
+    }
+    else return null;
+  }
     return (
       <div className={styles.wrapper}>
         <Header child={'Инициатива'}/>
@@ -40,9 +45,9 @@ if (props.state.initiatives.length > 0) {
               <img src={tick} alt="" className={styles.tick}/>
               Количество голосов: {initiative.num_of_supporters}
             </div>
-
             <VoteButton/>
           </div>
+          <ApproveButton/>
           <div className={styles.desk}>{initiative.text}</div>
         </div>
       </div>
