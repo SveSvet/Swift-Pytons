@@ -8,29 +8,37 @@ const mapData = {
   zoom: 10,
 };
 
-const placeMark = {
-  geometry: [51.9587, 85.9601],
-  properties: {
-    hintContent: 'Это хинт',
-    balloonContent: ['Лавочка (12.05.2020)<br>Поставьте уже, наконец, лавочку.<br><a href="/initiatives/1">Просмотреть инициативу</a>']
+const YMap = ({ initiatives, selector, select }) => {
+  let placeMarks;
+  if (initiatives) {
+      placeMarks = initiatives.map(({ annotation, text, title, longitude, latitude, created, num_of_supporters}) => {
+      let hint = title+'('+created.split("T")[0]+')';
+      let placeMark = {
+        geometry: [latitude, longitude],
+        properties: {
+          hintContent: title,
+          balloonContent: [annotation+' ('+created.split("T")[0]+')<br>'+text+'<br>Поддержавших: ' + num_of_supporters + '<br><a href="/initiatives/1">Просмотреть инициативу</a>']
+        },
+        modules: ['geoObject.addon.balloon', 'geoObject.addon.hint']
+      };
+      return (
+        <Placemark {...placeMark}/>
+      )
+    });
+  }
 
-  },
-  modules: ['geoObject.addon.balloon', 'geoObject.addon.hint']
-};
-
-const coordinates = [
-  [55.684758, 37.738521],
-  [57.684758, 39.738521]
-];
-
-const YMap = ({ initiatives }) => {
-    return (
-      <YMaps>
-        <Map defaultState={mapData} width='100%' height='380px'>
-          <Placemark {...placeMark}/>
-        </Map>
-      </YMaps>
-    )
+  function selectorFunction(event) {
+    if (selector) {
+      select(event.get("coords"))
+    }
+  }
+  return (
+    <YMaps>
+      <Map onClick={e => selectorFunction(e)} defaultState={mapData} width='100%' height='380px'>
+        {placeMarks}
+      </Map>
+    </YMaps>
+  )
 };
 
 export default YMap;

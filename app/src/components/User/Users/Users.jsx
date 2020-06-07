@@ -16,7 +16,7 @@ const Users = (props) => {
                 <p className={styles['user-email']}>{email}</p>
                 <p className={styles['user-phone']}>{phone}</p>
                 <p className={styles['user-date_of_birth']}>{date_of_birth}</p>
-                <NavLink to={"mypage/"+id}>{name}</NavLink>
+                <NavLink to={"users/"+id}>{name}</NavLink>
                 <div>Голосов: {num_of_liking}</div>
             </div>
         )

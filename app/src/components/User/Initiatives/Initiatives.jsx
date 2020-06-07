@@ -15,12 +15,14 @@ const Initiatives = (props) => {
         <div>Голосов: {num_of_supporters}</div>
       </div>
     )
-  })
+  });
     return (
         <div className={styles.wrapper}>
             <Header child={'Инициативы'}/>
             <Menu/>
-            <YMap/>
+            <NavLink className={styles.vote} to="initiative/add">Предложить</NavLink>
+            <YMap initiatives={props.state.initiatives}/>
+
             <div className={styles.initiatives__wrapper}>
                 {items}
             </div>

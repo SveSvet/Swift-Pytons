@@ -6,35 +6,17 @@ import { NavLink } from 'react-router-dom';
 
 
 const Initiative = (props) => {
-    const index = props.state.initiatives.findIndex(items => items.id == props.match.params.id)
-    const initiative = props.state.initiatives[index];
-    const tagstring = initiative.tags.map(x => "#"+x+" ")
-  function vote (id, type) {
-    /*
-    let index = props.state.initiatives.findIndex(items => items.id == id);
-    let newdata = props.state.initiatives;
-    type === 0 ? newdata[index].num_of_supporters-- : newdata[index].num_of_supporters++;
-    this.setState({initiatives: newdata});
-    */
-    fetch('http://leadersofdigital.pythonanywhere.com/api/v1/initiative_likes/', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({"initiative": id, "user": props.state.userid, "type": type})
-    }).then(function (response) {
-      return response.json();
-    }).then((data) => {
-      console.log(data);
-    });
-
-  }
+console.log(props)
+if (props.state.initiatives.length > 0) {
+  let index = props.state.initiatives.findIndex(items => items.id == props.match.params.id)
+  let initiative = props.state.initiatives[index];
+  let tagstring = initiative.tags.map(x => "#" + x + " ")
   function VoteButton() {
-    const supporters = initiative.supporters.map(x => x.id)
+    let supporters = initiative.supporters.map(x => x.id);
     if (!supporters.includes(props.state.userid)) {
-      return <div onClick={vote(props.match.params.id, 1)} className={styles.vote}>Проголосовать</div>
+      return <div onClick={() => props.vote(props.match.params.id, 1)} className={styles.vote}>Проголосовать</div>
     }
-    return <div onClick={vote(props.match.params.id, 0)} className={styles.voted}>Отозвать голос</div>
+    return <div onClick={() => props.vote(props.match.params.id, 0)} className={styles.voted}>Отозвать голос</div>
   }
     return (
       <div className={styles.wrapper}>
@@ -52,6 +34,8 @@ const Initiative = (props) => {
         </div>
       </div>
     )
+}
+else return (<div className={styles.loading}>Загрузка...</div>);
 };
 
 export default Initiative;
