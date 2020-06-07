@@ -21,11 +21,11 @@ const MyPage = (props) => {
 
         <Menu/>
         <div className={styles.user__wrapper}>
+          <NavLink to="/users" className={styles.back}>К списку пользователей</NavLink>
           <div className={styles.user__avatar}>
               <img src={avatar} alt="#"/>
               <p>{user.city}</p>
-              <p className={styles.status}>Должность: Губернатор
-                  {/*{user.status}*/}
+              <p className={styles.status}>Должность: {user.status}
               </p>
           </div>
             <div className={styles.user__bio}>

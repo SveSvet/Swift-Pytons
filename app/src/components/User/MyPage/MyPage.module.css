@@ -1,6 +1,14 @@
 .wrapper {
     margin-left: 65px;
 }
+
+.back {
+    padding: 0 0 10px 16px;
+    display: inline-block;
+    font-size: 14px;
+    color: #3A2C51;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -21,7 +29,7 @@
     font-style: normal;
     text-align: end;
     font-weight: 600;
-    font-size: 26px;
+    font-size: 24px;
     line-height: 37px;
 
     color: #FF766B;

@@ -4,30 +4,38 @@ import Menu from "../Menu";
 import {NavLink} from "react-router-dom";
 import Header from "../../Header";
 import YMap from "../../Map";
+import tick from "../MyPage/assets/tick.svg";
 
 const Users = (props) => {
-    const items = props.users.map(({ id, name, status, email, phone, date_of_birth, city, img, title, num_of_liking}) => {
+    const items = props.state.users.map(({ id, name, status, email, phone, date_of_birth, city, img, title, num_of_liking}) => {
         return (
-            <div key={id} className={styles.user}>
-                <p className={styles['user-name']}>{name}</p>
-                <img src={img}/>
-                <p className={styles['user-city']}>{city}</p>
-                <p className={styles['user-status']}>{status}</p>
-                <p className={styles['user-email']}>{email}</p>
-                <p className={styles['user-phone']}>{phone}</p>
-                <p className={styles['user-date_of_birth']}>{date_of_birth}</p>
-                <NavLink to={"users/"+id}>{name}</NavLink>
-                <div>Голосов: {num_of_liking}</div>
+            <div key={id} className={styles.users}>
+                <NavLink to={"users/"+id} className={styles['user-name']}>{name}</NavLink>
+                <div className={styles['user-info__wrapper']}>
+                    <img src="https://via.placeholder.com/140x100.png"/>
+                    <div className={styles['user-info__desc__wrapper']}>
+                        <p className={styles['desk-of-user']}>{city}</p>
+                        <p className={styles['desk-of-user']}>Статус: {status}</p>
+                        <p className={styles['desk-of-user']}>E-mail: {email}</p>
+                        <p className={styles['desk-of-user']}>Телефон: {phone}</p>
+                        <p className={styles['desk-of-user']}>Дата Рождения: {date_of_birth}</p>
+                    </div>
+                </div>
+                <p className={styles['desc-of-user-voice']}>
+                    <img src={tick} alt="" className={styles.tick}/>
+                    Голосов: {num_of_liking}
+                </p>
             </div>
         )
     })
     return (
         <div className={styles.wrapper}>
-            <Header child={'Моя страница'}/>
+            <Header child={'Пользователи'}/>
             <Menu/>
             <div className={styles.user__wrapper}>
                 {items}
             </div>
+            <p className={styles.subtitle}>Карта инициатив в вашем регионе:</p>
             <YMap/>
         </div>
     )
