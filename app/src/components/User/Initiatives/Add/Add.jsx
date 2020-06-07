@@ -10,6 +10,31 @@ const AddInitiative = (props) => {
     point: "Выберите точку"
   };
   const [state, setState] = useState(initialState);
+  const [label, setLabel] = useState('');
+
+  const onLabelChange = (e) => {
+        setLabel{
+          label: e.target.value
+      }
+    };
+
+    const addNewItem = () => {
+            return (
+                <div className={styles.inicAdd}>
+                    Инициатива добавлена!
+                </div>
+            )
+    };
+
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        addNewItem();
+        setLabel({
+            label: ''
+        });
+    };
+
 
     function select (coords) {
       setState({point: coords[0].toFixed(3)+" "+coords[1].toFixed(3)})
@@ -21,8 +46,9 @@ const AddInitiative = (props) => {
             <YMap select={select} selector="true"/>
             <div className={styles.initiatives__wrapper}>
               <div>Координаты: {state.point}</div>
-              <div className={styles.wrap__desc}><label className={styles.desc}>Название: <input/></label></div>
-              <div className={styles.wrap__desc}><label className={styles.desc}>Описание: <input/></label></div>
+              <form className={styles.wrap__desc} onSubmit={onSubmit}>
+                  <label className={styles.desc}>Название: <textarea onLabelChange={onLabelChange()}/></label>
+              </form>
               <div className={styles.vote}>Предложить</div>
             </div>
 
@@ -31,3 +57,4 @@ const AddInitiative = (props) => {
 };
 
 export default AddInitiative;
+
